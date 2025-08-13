@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${serverName} + ' - Команда'">Minecraft Server - Команда</title>
+
+    <!-- Шрифт Minecraft -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('https://zastavki.gas-kvas.com/uploads/posts/2024-06/zastavki-gas-kvas-com-7hgg-p-zastavki-mainkraft-starie-20.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+            color: #ecf0c1;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        /* Полупрозрачный слой для фона */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* Навигационное меню */
+        .navbar {
+            background-color: #27ae60;
+            padding: 10px 0;
+            border-bottom: 8px solid #219653;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #ecf0c1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .navbar a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        /* Основной контент */
+        .container {
+            margin: 60px auto;
+            max-width: 800px;
+            padding: 20px;
+            z-index: 1;
+            position: relative;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            border: 4px solid #219653;
+            box-shadow: 0 4px 0 #11331d;
+        }
+
+        .title {
+            font-size: 36px;
+            color: #e74c3c;
+            text-shadow:
+                    -2px -2px 0 #000,
+                    2px -2px 0 #000,
+                    -2px  2px 0 #000,
+                    2px  2px 0 #000,
+                    0 0 5px #000;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Карточки разработчиков */
+        .dev-card {
+            background-color: rgba(39, 174, 96, 0.3);
+            border: 3px solid #219653;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .dev-name {
+            color: #2ecc71;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .dev-role {
+            color: #f39c12;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .dev-info {
+            color: #d4e157;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .dev-contact {
+            display: inline-block;
+            background-color: #1e5b33;
+            color: #fff;
+            padding: 8px 16px;
+            border: 3px solid #164626;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 0 #11331d;
+            transition: all 0.1s ease;
+        }
+
+        .dev-contact:hover {
+            color: #fff;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #11331d;
+        }
+
+        .dev-contact:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #11331d;
+        }
+
+        .ip {
+            font-size: 20px;
+            background-color: #1e5b33;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 4px solid #164626;
+            border-radius: 8px;
+            margin-top: 30px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 0 #11331d;
+            color: #fff;
+        }
+
+        .ip:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #11331d;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигация -->
+<div class="navbar">
+    <a href="/">Главная</a>
+    <a href="/rules">Правила</a>
+    <a href="/team">Команда</a>
+    <a href="/donate">Донат</a>
+</div>
+
+<!-- Основной контент -->
+<div class="container">
+    <h1 class="title">КОМАНДА СЕРВЕРА</h1>
+
+    <!-- Список разработчиков -->
+    <div th:each="dev : ${developers}" class="dev-card">
+        <div class="dev-name" th:text="${dev.name}">Имя разработчика</div>
+        <div class="dev-role" th:text="${dev.role}">Роль</div>
+        <div class="dev-info" th:text="${dev.info}">Информация о разработчике...</div>
+
+        <!-- Кнопка: написать в Telegram -->
+        <a th:href="'https://t.me/' + ${dev.telegram}"
+           th:text="'Написать: @' + ${dev.telegram}"
+           class="dev-contact">
+            Написать в Telegram
+        </a>
+    </div>
+
+    <!-- IP сервера -->
+    <div class="ip" th:text="'IP: ' + ${serverIp}" style="margin-top: 30px;">
+        IP: загружается...
+    </div>
+</div>
+
+</body>
+</html>
