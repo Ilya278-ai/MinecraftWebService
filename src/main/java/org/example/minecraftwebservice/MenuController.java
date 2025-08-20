@@ -3,6 +3,8 @@ package org.example.minecraftwebservice;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MenuController {
@@ -29,6 +31,11 @@ public class MenuController {
         model.addAttribute("serverIp",TextService.ip);
         model.addAttribute("developers",TextService.developers());
         return "server_team";
+    }
+
+    @GetMapping("/news/add")
+    public String showAddNewsForm(Model model) {
+        return "add-news"; // имя шаблона
     }
 
 
