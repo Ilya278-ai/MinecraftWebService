@@ -37,7 +37,10 @@ public class MenuController {
     public String showAddNewsForm(Model model) {
         return "add-news"; // имя шаблона
     }
-
+    @GetMapping("/howtoplay")
+    public String instructions(Model model){
+        return "how_to_play";
+    }
 
 
 }
