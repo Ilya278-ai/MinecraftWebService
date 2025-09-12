@@ -37,8 +37,12 @@ public class MenuController {
     public String showAddNewsForm(Model model) {
         return "add-news"; // имя шаблона
     }
+
+
     @GetMapping("/howtoplay")
     public String instructions(Model model){
+        model.addAttribute("serverIp",TextService.ip);
+        model.addAttribute("serverName","Neo-Planet");
         return "how_to_play";
     }
 
