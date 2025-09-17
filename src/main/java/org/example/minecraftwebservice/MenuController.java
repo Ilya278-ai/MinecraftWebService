@@ -40,11 +40,16 @@ public class MenuController {
 
 
     @GetMapping("/howtoplay")
-    public String instructions(Model model){
-        model.addAttribute("serverIp",TextService.ip);
-        model.addAttribute("serverName","Neo-Planet");
+    public String instructions(Model model) {
+        model.addAttribute("serverIp", TextService.ip);
+        model.addAttribute("serverName", "Neo-Planet");
         return "how_to_play";
     }
 
+    @GetMapping("/donate")
+    public String menu(){
+        return "server_donat";
+
+    }
 
 }
