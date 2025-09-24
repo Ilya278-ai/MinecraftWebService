@@ -1,5 +1,6 @@
 package org.example.minecraftwebservice;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MenuController {
+
+    @Value("${LINK_ON_CLIENT}")
+    private String link;
 
     @GetMapping("/")
     public String menu(Model model){
@@ -43,6 +47,8 @@ public class MenuController {
     public String instructions(Model model) {
         model.addAttribute("serverIp", TextService.ip);
         model.addAttribute("serverName", "Neo-Planet");
+        model.addAttribute("link", link);
+        model.addAttribute("link_jdk","https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe");
         return "how_to_play";
     }
 
